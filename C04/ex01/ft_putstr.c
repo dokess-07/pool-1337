@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akhayakk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/26 15:50:36 by akhayakk          #+#    #+#             */
-/*   Updated: 2025/07/29 18:00:38 by akhayakk         ###   ########.fr       */
+/*   Created: 2025/07/29 18:09:25 by akhayakk          #+#    #+#             */
+/*   Updated: 2025/07/29 18:12:44 by akhayakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+void	ft_putstr(char *str)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
-	if (n == 0)
-		return (0);
-	while (i < n && s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
+	while (str[i])
+	{
+		if (str[i] >= 32 && str[i] <= 126)
+		{
+			write (1, str[i], 1);
+		}
 		i++;
-	if (i == n)
-		return (0);
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	}
+	return (str);
 }

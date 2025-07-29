@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akhayakk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/26 15:50:36 by akhayakk          #+#    #+#             */
-/*   Updated: 2025/07/29 18:00:38 by akhayakk         ###   ########.fr       */
+/*   Created: 2025/07/29 15:13:00 by akhayakk          #+#    #+#             */
+/*   Updated: 2025/07/29 15:47:17 by akhayakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+char	*ft_strstr(char *str, char *to_find)
 {
-	unsigned int	i;
+	int	i;
+	int	j;
 
 	i = 0;
-	if (n == 0)
-		return (0);
-	while (i < n && s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
+	j = 0;
+	if (*to_find == '\0')
+		return (str);
+	while (str[i])
+	{
+		while (to_find[j] && to_find[j] == str[i + j])
+		{
+			j++;
+		}	
+		if (to_find[j] == '\0')
+			return (str + i);
 		i++;
-	if (i == n)
-		return (0);
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		j = 0;
+	}
+	return (0);
 }
