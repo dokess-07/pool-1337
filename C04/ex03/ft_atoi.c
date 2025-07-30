@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akhayakk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/29 18:09:25 by akhayakk          #+#    #+#             */
-/*   Updated: 2025/07/30 15:25:49 by akhayakk         ###   ########.fr       */
+/*   Created: 2025/07/30 16:04:58 by akhayakk          #+#    #+#             */
+/*   Updated: 2025/07/30 17:28:39 by akhayakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h> 
-
-void	ft_putstr(char *str)
+int	ft_atoi(char *str)
 {
 	int	i;
+	int	sign;
+	int	result;
 
+	sign = 1;
 	i = 0;
-	while (str[i] != '\0')
+	result = 0;
+	while (str[i] && ((str[i] == ' ') || (str[i] >= 9 && str[i] <= 13)))
+		i++;
+	while ((str[i] != '\0') && (str[i] == '-' || str[i] == '+'))
 	{
-		write (1, &str[i], 1);
+		if (str[i] == '-')
+			sign *= -1;
 		i++;
 	}
+	while (str[i] != '\0')
+	{
+		if (str[i] >= '0' && str[i] <= '9')
+			result = (result * 10) + (str[i] - '0');
+		else
+			return (sign * result);
+		i++;
+	}
+	return (sign * result);
 }
